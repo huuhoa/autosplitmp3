@@ -1,6 +1,17 @@
-import subprocess
-import sys
+import argparse
 import os
+import subprocess
+
+
+def parse_arg():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-ot", "--origin",
+                        help="original track")
+    parser.add_argument("-t", "--tracks",
+                        help="track list")
+    args = parser.parse_args()
+    return args.origin, args.tracks
+
 
 def get_title(original_track):
     cmd_string = 'ffmpeg -i "%s" -f ffmetadata meta.txt' % original_track
@@ -25,14 +36,8 @@ def get_title(original_track):
 def main():
     """split a music track into specified sub-tracks by calling ffmpeg from the shell"""
 
-    # check command line for original file and track list file
-    if len(sys.argv) != 3:
-        print('usage: split <original_track> <track_list>')
-        exit(1)
-
     # record command line args
-    original_track = sys.argv[1]
-    track_list = sys.argv[2]
+    original_track, track_list = parse_arg()
 
     track_title = get_title(original_track)
 

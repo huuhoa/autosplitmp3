@@ -1,6 +1,16 @@
-import subprocess
-import sys
-import re
+import argparse
+
+
+def parse_arg():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", "--subtitle",
+                        help="subtitle path")
+    parser.add_argument("-t", "--tracks",
+                        help="track list")
+    parser.add_argument("-p", "--prefix",
+                        help="prefix")
+    args = parser.parse_args()
+    return args.subtitle, args.tracks, args.prefix.replace(' ', '_')
 
 
 def write_track_list(tracks, track_list):
@@ -23,15 +33,8 @@ def append_track(tracks, start, line_timing, filename, current_chapter):
 def main():
     """create track list file from subtitle"""
 
-    # check command line for original file and track list file
-    if len(sys.argv) != 4:
-        print('usage: sub2track <subtitle> <track_list> <prefix>')
-        exit(1)
-
     # record command line args
-    subtitle = sys.argv[1]
-    track_list = sys.argv[2]
-    prefix = sys.argv[3].replace(' ', '_')
+    subtitle, track_list, prefix = parse_arg()
 
     tracks = []
     # read each line of the track list and split into start, end, name
