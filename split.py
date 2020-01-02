@@ -34,6 +34,7 @@ def get_title(original_track):
 
 
 def main():
+    """code is mainly based on https://unix.stackexchange.com/a/400032"""
     """split a music track into specified sub-tracks by calling ffmpeg from the shell"""
 
     # record command line args
