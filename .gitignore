@@ -3,3 +3,4 @@
 *.list
 .idea
 autosub/
+venv/
