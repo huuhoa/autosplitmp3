@@ -105,54 +105,6 @@ def main():
     subtitle, track_list, prefix = parse_arg()
     srt_segments = read_srt(subtitle)
     tracks = transform_tracks(srt_segments, prefix)
-    # # read each line of the track list and split into start, end, name
-    # with open(subtitle, 'r') as f:
-    #     start = '00:00:00'
-    #     current_chapter = ''
-    #     current_file = ''
-    #     line_index = 0
-    #     filename = ''
-    #     for line in f:
-    #         # skip comment
-    #         if line.startswith('#'):
-    #             continue
-
-    #         # empty line
-    #         if len(line) <= 1:
-    #             line_index = 0
-    #             continue
-
-    #         # not empty lines
-    #         line_index += 1
-    #         # skip line numbering
-    #         if line_index == 1:
-    #             continue
-    #         if line_index == 2: # subtitle time start-end
-    #             line_timing, _, _ = line.strip().split(',')
-    #             continue
-
-    #         # line_index == 3: - subtitle content
-    #         if not line.startswith('Chapter '):
-    #             continue
-
-    #         # encounter first chapter, should not append track since it is just the begining
-    #         if len(current_chapter) <= 1:
-    #             filename, current_chapter = get_filename_title(prefix, line)
-    #             continue
-
-    #         # begining of new chapter, should record current chapter
-    #         append_track(tracks, start, line_timing, filename, current_chapter)
-
-    #         # starting new chapter
-    #         filename, current_chapter = get_filename_title(prefix, line)
-    #         start = line_timing
-
-    #     # end for
-
-    #     # last chapter
-    #     if len(current_chapter) > 1:
-    #         append_track(tracks, start, line_timing, filename, current_chapter)
-
     write_track_list(tracks, track_list)
 
 
