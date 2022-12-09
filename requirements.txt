@@ -1,6 +1,6 @@
 -e git+https://github.com/agermanidis/autosub.git@d32389cb76e63ec6959111c3f989a72f36f726fe#egg=autosub
 cachetools==4.2.2
-certifi==2021.5.30
+certifi==2022.12.7
 chardet==4.0.0
 charset-normalizer==2.0.4
 google-api-core==1.31.1
